@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: story-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: story
@@ -14,4 +14,14 @@ spec:
     spec:
       containers:
         - name: story
-          image: wnsvy607/kub-data-demo
+          image: wnsvy607/kub-data-demo:1
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          # emptyDir 타입의 드라이버
+          # emptyDir: {}
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate
