@@ -20,8 +20,12 @@ spec:
               name: story-volume
       volumes:
         - name: story-volume
+          persistentVolumeClaim: 
+            claimName: host-pvc
+
           # emptyDir 타입의 드라이버
           # emptyDir: {}
-          hostPath:
-            path: /data
-            type: DirectoryOrCreate
+
+          # hostPath:
+          #   path: /data
+          #   type: DirectoryOrCreate
